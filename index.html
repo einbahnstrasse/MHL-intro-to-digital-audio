@@ -1,0 +1,2276 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Intro to Digital Audio | Electronic Studio Methods and Composition</title>
+
+		<!-- <link rel="stylesheet" href="dist/reset.css"> -->
+		<link rel="stylesheet" href="dist/reveal.css">
+		<!-- <link rel="stylesheet" href="dist/theme/black.css"> -->
+		<link rel="stylesheet" href="dist/theme/lg.intro.slides.v02.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<!-- <link rel="stylesheet" href="plugin/highlight/monokai.css"> -->
+		<link rel="stylesheet" href="plugin/highlight/vs.css">
+
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Actor&family=Raleway:ital,wght@0,100;0,400;0,600;1,100;1,300;1,400;1,600&display=swap" rel="stylesheet"> -->
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Actor&family=Buenard:wght@400;700&family=Raleway:ital,wght@0,100;0,400;0,600;1,100;1,300;1,400;1,600&display=swap" rel="stylesheet">
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section>
+					<svg > 
+						<symbol id="s-text">
+							<text text-anchor="middle" x="50%" y="80%">Intro to Digital Audio</text>
+							<text text-anchor="middle" x="51%" y="81%">Intro to Digital Audio</text>
+						</symbol>
+						<g class = "g-ants">
+							<use xlink:href="#s-text" class="text-copy"></use>
+							<use xlink:href="#s-text" class="text-copy"></use>
+							<use xlink:href="#s-text" class="text-copy"></use>
+							<use xlink:href="#s-text" class="text-copy"></use>
+							<use xlink:href="#s-text" class="text-copy"></use>
+						</g>
+					</svg>
+					<h5 style="position:absolute;right:10px;" class="fade-in-text">Electronic Studio Methods + Composition — Louis Goldford (2023)</h5>
+				</section>
+
+				<section data-auto-animate>
+					<h5 style="text-align: left;">These slides will discuss:</h5>
+				</section>
+
+				<section data-auto-animate>
+					<h5 style="text-align: left;">These slides will discuss:</h5>
+					<div style="text-align: left;" data-auto-animate-id="list">
+						<h6>What is Sound?</h6>
+						<h6 class="fragment">Introduction to Digital Audio</h6>
+						<h6 class="fragment">Digital Signal Processing (DSP)</h6>
+					</div>
+				</section>
+
+				<section data-auto-animate>
+					<h5 style="text-align: left;">These slides will discuss:</h5>
+					<div style="text-align: left;" data-auto-animate-id="list">
+						<h6>What is Sound?</h6>
+							<ul>
+								<li>Vibration: Simple Harmonic Motion</li>
+								<li>The Mass-Spring System</li>
+								<li>Waveform: Displacement, Velocity, Acceleration</li>
+							</ul>
+						<h6>Introduction to Digital Audio</h6>
+							<ul>
+								<li>Analogue vs. Digital</li>
+								<li>Sample Rate + Bit Depth</li>
+								<li>Properties: Frequency + Amplitude</li>
+							</ul>
+						<h6>Digital Signal Processing (DSP)</h6>
+							<ul>
+								<li>Synthesis vs. Signal Processing</li>
+								<li>Time Domain vs. Frequency Domain</li>
+								<li>Basic Waveforms</li>
+								<li>Envelopes</li>
+							</ul>
+					</div>
+				</section>
+
+				<section data-auto-animate>
+					<div class="special-header">
+						<h2>What is Sound?</h2>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is Sound? — Vibration: Simple Harmonic Motion</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/loy.fig.1.2.png" class="fade-in-text" alt="loy.fig.1.2.png" width="75%">
+						<p class="fragment">When you set a <b>tuning fork</b> into motion (a), it <b>vibrates</b> the air molecules around it (b).</p>
+						<p class="fragment">Zones of greater or lesser <b>density</b> (c) produce differences in <em>air pressure</em>.</p> 
+						<p class="fragment">We <em>experience</em> and <em>perceive</em> these differences in pressure as <b>sound.</b></p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is Sound? — Vibration: Simple Harmonic Motion</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/loy.fig.1.2.png" class="fade-in-text" alt="loy.fig.1.2.png" width="75%">
+						<p class="fragment">Look closely at the graph of <b>density</b> (c)...</p>
+						<p class="fragment">It describes a <b>back-and-forth</b> motion between <em>high</em> pressure and <em>low</em> pressure zones.</p>
+						<p class="fragment">This basic motion is <em>predictable</em> and <em>periodic</em>, and is known as <b>Simple Harmonic Motion</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is Sound? — Vibration: Simple Harmonic Motion</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/loy.fig.1.3.png" class="fade-in-text" alt="loy.fig.1.3.png" width="85%">
+						<p class="fragment">Imagine: we tie a pen to the vibrating tuning fork, and trace its <b>position</b> on a scrolling paper<br><em>(like a <a href="https://www.usgs.gov/faqs/seismometers-seismographs-seismograms-whats-difference-how-do-they-work#:~:text=Seismographs%20are%20instruments%20used%20to,Chang%20Heng%20in%20A.D.%20132." target="_blank">seismograph</a> used to record ground motion during an earthquake)...</em></p>
+						<p class="fragment">If we <em>zoom in</em> using a magnifying glass, we'll notice the same <b>back-and-forth</b> motion<br>oscillating up and down on the paper.</p>
+						<p class="fragment">This time, however, the motion is measuring the <b>displacement</b> of the tuning fork in space.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is Sound? — Vibration: Simple Harmonic Motion</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/loy.fig.1.3.png" class="fade-in-text" alt="loy.fig.1.3.png" width="85%">
+						<p class="fragment">This <em>regular back-and-forth</em> movement between 2 points is an <b>oscillation</b></p>
+						<p class="fragment">and can be described as <b>sinusoidal</b>, meaning it takes the shape of a <b>sine wave</b>.</p>
+						<p class="fragment">A <b>sine wave</b> is a mathematical <em>abstraction</em> of <b>simple harmonic motion</b>.</p>
+
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is Sound? — The Mass-Spring System</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/loy.fig.1.4.png" class="fade-in-text" alt="loy.fig.1.4.png" width="45%" style="position: relative; top: 5vh;">
+						<p class="fragment">We can describe the <em>physical process</em> of simple harmonic motion using a <b>mass-spring system</b>.</p>
+						<p class="fragment">In (a) there is no motion: the mass is <b>still</b>, and it <b>rests</b> at a point (B) of <em>equilibrium</em>.</p>
+						<p class="fragment">When we set the spring into motion (b), the mass <em>oscillates</em> up (C) and down (A).</p>
+					</div>
+				</section>
+
+				<!-- <section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is Sound? — The Mass-Spring System</h4>
+					</div>
+					<div class="special-body">
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/6JeyiM0YNo4?si=BWBuklQCNMKSEYZv" title="violin string slowed down" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: relative; top: 2vh;"></iframe>						
+						<p class="fragment">The mass-spring system is a <b>model</b> illustrating basic <em>oscillatory</em> motion, in general</p>
+						<p class="fragment">and roughly describes the motion of a <b>bowed violin string</b>,<br>or a string <em>excited</em> on any <b>monochord</b> instrument.</p>
+						<p class="fragment">We see <b>simple harmonic motion</b> if we slow down a video of a bowed string.<br>Notice the other 3 strings are resting at their <b>equilibrium</b> positions.</p>
+					</div>
+				</section> -->
+
+				<section class="special-slide" data-background-video="vid/bowed.violin.v02.mp4" data-background-video-loop data-background-video-muted data-auto-animate>
+					<!-- https://youtu.be/J2BUvWRCBGM?si=dgYBt-RBXue4CyhE -->
+					<div class="special-header">
+						<h4 style="background: #ffffff77;">What is Sound? — The Mass-Spring System</h4>
+						<p class="fragment" style="position: absolute; top: 50vh; background: #ffffff77;">If we slow a down a video of a violin string several hundred times,</p>		
+						<p class="fragment" style="position: absolute; top: 55vh; background: #ffffff77;">we can observe <b>simple harmonic motion</b> in the string’s vibration.</p>		
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Waveform: Displacement, Velocity, Acceleration</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/loy.fig.1.7.png" class="fade-in-text" alt="loy.fig.1.7.png" width="85%">
+						<p class="fragment"><b>Displacement</b> measures the <em>physical movement</em> of something in space.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Waveform: Displacement, Velocity, Acceleration</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/loy.fig.1.7.png" class="fade-in-text" alt="loy.fig.1.7.png" width="85%">
+						<p class="fragment">If we graph the <b>displacement</b> of the mass in space, as we did the tuning fork (a),<br>we can describe (b) its speed (<b>velocity</b>) and its <em>change</em> in speed (<b>acceleration</b>).</p>
+						<p class="fragment">When the mass crosses through its “rest” position (<em>equilibrium</em>), it is moving its <em>fastest</em>.</p>
+						<p class="fragment">But when the mass reaches its <b>highest</b> and <b>lowest</b> positions, its <em>change</em> in speed<br> (acceleration) has the greatest magnitude (positive + or negative -).</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Waveform: Displacement, Velocity, Acceleration</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/loy.fig.1.5.png" class="fade-in-text" alt="loy.fig.1.5.png" width="85%">
+						<p class="fragment">All 3 properties (Displacement, Velocity, and Acceleration) can be described<br>using <b>sine waves</b> that reveal <b>simple harmonic motion</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Waveform: Displacement, Velocity, Acceleration</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/loy.fig.1.8.png" class="fade-in-text" alt="loy.fig.1.8.png" width="85%">
+						<p class="fragment">A <b>sound wave</b> is very similar...</p>
+						<p class="fragment">Here, displacement corresponds to <b>amplitude</b> (loudness)<br> on the Y-axis, and its <b>change over time</b> on the X-axis.</p>
+						<p class="fragment">This sound wave is a single <b>note</b> on a <b>plucked string</b> instrument:</p>
+						<p class="fragment">It begins with <em>high</em> amplitude, when the string vibrates its <em>loudest</em>, with lots of <b>energy</b>,</p>
+						<p class="fragment">but then <b>gets quieter</b> as time goes on, until <em>silence</em> arrives: when the string <b>stops vibrating</b>.</p>
+						<p class="fragment">The string <em>loses energy</em>. Excited by just 1 pluck, the string’s energy <b>dissipates</b><br> over time, as it returns to a state of <em>equilibrium</em>.</p>
+					</div>
+				</section>
+
+				<section data-auto-animate>
+					<div class="special-header">
+						<h2>Introduction to Digital Audio</h2>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Analogue vs. Digital</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/loy.fig.1.8.png" class="fade-in-text" alt="loy.fig.1.8.png" width="85%">
+						<p class="fragment">We must remember that this waveform, with its <b>smooth curves</b>, exists only <b>in nature</b>.</p>
+						<p class="fragment">When we produce sound through <b>physical means</b>,<br>we obtain “ideal” <em>smooth</em> and <em>continuous</em> <b>analogue waveforms</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Analogue vs. Digital</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/cipriani.fig.1.10.png" class="fade-in-text" alt="cipriani.fig.1.10.png" width="65%">
+						<p class="fragment">We can measure the instantaneous <b>amplitude</b> (loudness) of a signal at any point in time,</p>
+						<p class="fragment">Yet, this <b>analogue waveform</b> remains “ideally” <em>smooth</em> and <em>continuous</em>,</p>
+						<p class="fragment">with an <b>infinite</b> number of points along the X-axis we could measure!</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Analogue vs. Digital</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/522kev.attape.jpg" class="fade-in-text" alt="https://www.stereophile.com/images/522kev.attape.jpg" width="60%">
+						<p class="fragment">Here, an audio engineer works with <b>mangetic tape</b> and a <b>vinyl record lathe</b>.</p>
+						<p class="fragment">These machines record <b>analogue sound waves</b> from <b>electrical signals</b></p>
+						<p class="fragment">which capture <b>continuous physical vibrations</b> picked up by microphones.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Analogue vs. Digital</h4>
+					</div>
+					<div class="special-body">
+						<h6>Things are very different using <b>computers</b>...</h6>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Analogue vs. Digital</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/cipriani.fig.1.11.png" class="fade-in-text" alt="cipriani.fig.1.11.png" width="55%" style="position: relative; top: 3vh;">
+						<p class="fragment">In <b>digital audio</b>, there is no smooth curve but only <b>discrete points</b> that <em>represent</em> curves.</p>
+						<p class="fragment">We obtain these points by <b>taking periodic measurements</b> of a waveform’s instantaneous amplitude.</p>
+						<p class="fragment">Each point represents the value of a signal’s amplitude at an exact point in time.</p>
+						<p class="fragment">These periodic measurements of a waveform are called <b>samples</b>.<br>The original waveform above was <b>sampled</b> every 5 milliseconds (msec).</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Analogue vs. Digital</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/cipriani.fig.1.11a.interp.png" class="fade-in-text" alt="cipriani.fig.1.11a.interp.png" width="55%" style="position: relative; top: 3vh;">
+						<p class="fragment">To <em>reconstruct</em> the analogue signal, a computer can <b>insert values</b> between the sampled values.</p>
+						<p class="fragment">This process of <em>inserting new data between points</em> is called <b>interpolation</b>.</p>
+						<p class="fragment">Each black square point represents a <b>sampled value</b> from a signal,</p>
+						<p class="fragment">and each <span id="red"><b>red line segment</b></span> represents <b>additional points</b><br>inserted between the samples to improve the signal’s smoothness.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Analogue vs. Digital</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/cipriani.fig.1.11a.interp.png" class="fade-in-text" alt="cipriani.fig.1.11a.interp.png" width="55%" style="position: relative; top: 3vh;">
+						<p>The <span id="red"><b>red line segments</b></span> look and sound much like the original analogue signal...</p>
+						<p class="fragment">...but crucially, it will never be precise...</p>
+						<p class="fragment">A digital signal can only <b>approximate</b> an original analogue sound wave.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Analogue vs. Digital</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/Figure-5.20-Signal-path-in-digital-audio-recording-1024x402.png" class="fade-in-text" alt="https://digitalsoundandmusic.com/wp-content/uploads/2014/05/Figure-5.20-Signal-path-in-digital-audio-recording-1024x402.png" width="75%">
+						<p class="fragment">To obtain a <b>digital</b> representation of an audio signal, for example, on your <b>computer</b>,</p>
+						<p class="fragment">you will need something to <em>convert</em> between <b>analogue</b> and <b>digital</b> formats.</p>
+						<p class="fragment">This is accomplished using an <b>Audio Interface</b>, which connects microphones,<br>speakers, and other <b>analogue</b> equipment producing a physical vibration</p>
+						<p class="fragment">to a <b>computer</b> and to other <b>digital</b> signal processing equipment.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Analogue vs. Digital</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/Figure-5.20-Signal-path-in-digital-audio-recording-1024x402.png" class="fade-in-text" alt="https://digitalsoundandmusic.com/wp-content/uploads/2014/05/Figure-5.20-Signal-path-in-digital-audio-recording-1024x402.png" width="75%">
+						<p class="fragment"><b>Input</b> signals are converted: <b>analog-to-digital conversion (ADC)</b></p>
+						<p class="fragment">in order to <b>record</b>, <b>edit</b>, <b>synthesize</b>, and <b>process</b> sound on a computer,</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-background-video="vid/MUS 493 - Dynamic Microphone - Exploded View.mp4" data-background-video-loop data-background-video-muted data-auto-animate>
+					<!-- https://youtu.be/LSLz-VNr4wc?si=mjNTVYXtf2hlyEJN -->
+					<div class="special-header">
+						<h4>Digital Audio — Analogue vs. Digital</h4>
+						<p class="fragment" style="background: #ffffff77;">If we disassemble a microphone, we will find a <b>diaphragm</b>...</p>		
+						<p class="fragment" style="position: absolute; top: 50vh; background: #ffffff77;">...which physically <em>vibrates</em> in response to sound,<br>much like the diaphragms in our ears.</p>		
+						<p class="fragment" style="position: absolute; top: 55vh; background: #ffffff77;">Microphones convert physical energy into <b>electrical signals</b>,<br>and your <b>ADC</b> converts this into a <b>digital signal</b>.</p>			
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Analogue vs. Digital</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/Figure-5.20-Signal-path-in-digital-audio-recording-1024x402.png" class="fade-in-text" alt="https://digitalsoundandmusic.com/wp-content/uploads/2014/05/Figure-5.20-Signal-path-in-digital-audio-recording-1024x402.png" width="75%">
+						<p class="fragment"><b>Output</b> signals are also converted: <b>digital-to-analogue conversion (DAC)</b>,</p>
+						<p class="fragment">in order to <b>amplify</b>, <b>broadcast</b>, and <b>send</b> sound and audio <b>data</b> from a computer.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-background-video="vid/speaker.vibrating.v02.mov" data-background-video-loop data-background-video-muted data-auto-animate>
+					<!-- https://youtu.be/J2BUvWRCBGM?si=dgYBt-RBXue4CyhE -->
+					<div class="special-header">
+						<h4 style="background: #ffffff77;">Digital Audio — Analogue vs. Digital</h4>
+						<p class="fragment" style="position: absolute; top: 50vh; background: #ffffff77;">If we slow a down a video of a speaker several hundred times,</p>		
+						<p class="fragment" style="position: absolute; top: 53vh; background: #ffffff77;">we will see the speaker <b>cone’s <em>physical vibration</em></b>.</p>		
+						<p class="fragment" style="position: absolute; top: 56vh; background: #ffffff77;">Your <b>DAC</b> converts digital signals into <b>electrical signals</b>,<br>and your speakers convert this into <b>physical energy</b>.</p>			
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/izotope.sample.rates.png" class="fade-in-text" alt="https://www.izotope.com/en/learn/digital-audio-basics-sample-rate-and-bit-depth.html" width="40%" style="position: relative; top: 1vh;">
+						<p class="fragment">In <b>digital audio</b>, the sound <b>quality</b> largely depends<br>on <b>how often</b> we take <b>samples</b> of an input signal.</p>
+						<p class="fragment">How often we <b>sample</b> an audio signal is called<br>the <b>sampling rate</b> — or <b>sampling frequency</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/izotope.sample.rates.png" class="fade-in-text" alt="https://www.izotope.com/en/learn/digital-audio-basics-sample-rate-and-bit-depth.html" width="40%" style="position: relative; top: 1vh;">
+						<p class="fragment">As a <b>rate</b>, the sampling rate measures <em>how many samples are taken per second</em>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/izotope.sample.rates.png" class="fade-in-text" alt="https://www.izotope.com/en/learn/digital-audio-basics-sample-rate-and-bit-depth.html" width="40%" style="position: relative; top: 1vh;">
+						<p>In the example above, <b>A.</b> utilizes a very <b>low</b> sampling rate.<br>There is more time taken between each sample value.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/izotope.sample.rates.png" class="fade-in-text" alt="https://www.izotope.com/en/learn/digital-audio-basics-sample-rate-and-bit-depth.html" width="40%" style="position: relative; top: 1vh;">
+						<p><b>B.</b> and <b>C.</b> utilize <b>higher</b> sampling rates, which encode increasingly<br><b>higher frequencies</b> from the original signal into digital format.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/izotope.sample.rates.png" class="fade-in-text" alt="https://www.izotope.com/en/learn/digital-audio-basics-sample-rate-and-bit-depth.html" width="40%" style="position: relative; top: 1vh;">
+						<p><b>Lower</b> sampling rates <b>decrease</b> the quality of the audio<br>because they retain <b>fewer</b> components from the original sound.</p>
+						<p class="fragment">However, they take up <b>less memory</b> in our computers.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/izotope.sample.rates.png" class="fade-in-text" alt="https://www.izotope.com/en/learn/digital-audio-basics-sample-rate-and-bit-depth.html" width="40%" style="position: relative; top: 1vh;">
+						<p><b>Higher</b> sampling rates <b>increase</b> the quality of the audio<br>because they retain <b>more</b> components from the original sound.</p>
+						<p class="fragment">However, they take up <b>more memory</b> in our computers.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/izotope.sample.rates.png" class="fade-in-text" alt="https://www.izotope.com/en/learn/digital-audio-basics-sample-rate-and-bit-depth.html" width="40%" style="position: relative; top: 1vh;">
+						<p>So, in choosing a sampling rate, there is a <b>tradeoff</b><br>between audio <b>quality</b> and <b>computational memory</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/discs-polycarbonate-plastic.jpg" class="fade-in-text" alt="https://www.izotope.com/en/learn/digital-audio-basics-sample-rate-and-bit-depth.html" width="50%">
+						<p class="fragment">In <b>digital audio</b>, the <b>standard sampling rate</b> is 44.1 kHz (killohertz)</p>
+						<p class="fragment">Meaning amplitudes are sampled 44,100 times per second!</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/discs-polycarbonate-plastic.jpg" class="fade-in-text" alt="https://www.izotope.com/en/learn/digital-audio-basics-sample-rate-and-bit-depth.html" width="50%">
+						<p class="fragment">44,100 is the sampling rate you will find on <b>compact discs (CDs)</b></p>
+						<p class="fragment">and is appropriate for <b>listening</b>, <b>playback</b>, and <b>consumer audio</b> applications.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/audio-engineer_diploma_2022_0086.jpg" class="fade-in-text" alt="https://www.matc.edu/course-catalog/creative-arts-design-media/audio-production.html" width="50%">
+						<p class="fragment">But for audio <b>recording</b>, <b>editing</b>, and <b>production</b>,</p>
+						<p class="fragment">a <b>higher</b> sampling rate is necessary in order to hear <b>detail</b>.</p>
+						<p class="fragment">Production sampling rates of 48 kHz and 96 kHz are common.</p>
+						<p class="fragment">In our MHL Digitale Kreation classes, <b>48 kHz is our standard</b><br>sampling rate for <b>production</b> and final <b>playback</b> formats.</p>
+					</div>
+				</section>
+				
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/SSampling-1139x550.png" class="fade-in-text" alt="https://www.masteringbox.com/bit-depth/" width="50%">
+						<p class="fragment">Another measure of audio quality is its <b>bit depth</b></p>
+						<p class="fragment">which measures the <b>dynamic range</b> of an audio signal<br>(its total loudness and its <em>resolution</em> of loudness).</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/SSampling-1139x550.png" class="fade-in-text" alt="https://www.masteringbox.com/bit-depth/" width="50%">
+						<p class="fragment">We <em>want</em> our musical recordings to have a <b>wide dynamic range</b>.</p>
+						<p class="fragment">The <em>louder</em> and <em>softer</em> our recordings are,</p>
+						<p class="fragment">the more <b>expressive</b> and <b>dynamic</b> our music will be!</p>
+
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/SSampling-1139x550.png" class="fade-in-text" alt="https://www.masteringbox.com/bit-depth/" width="50%">
+						<p>Notice the difference in the <b>number of steps</b>, along the Y-axis,<br>on the left and right sides of the image above...</p>
+						<p class="fragment">The left side has a <b>lower</b> bit depth, while the right side has a <b>higher</b> bit depth,</p>
+						<p class="fragment">meaning the right side has <b>more points of resolution</b><br>to represent the original amplitude of an audio signal.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/Quantization-Noise-Example.png" class="fade-in-text" alt="https://www.soundguys.com/audio-bit-depth-explained-23706/" width="50%" style="position: relative; top: 5vh;">
+						<p>Here, the analogue input signal (from a microphone) is in <span id="blue"><b>blue</b></span>,<br>and its digital representation is in <span id="orange"><b>orange</b></span>.</p>
+						<p class="fragment">The sample values are <b>quantized</b> at 3 different bit depths:<br>2 bits, 4 bits, and 8 bits (left to right).</p>
+						<p class="fragment">Notice that the shape of the original signal <em>improves</em> as bit depth increases...</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/Quantization-Noise-Example.png" class="fade-in-text" alt="https://www.soundguys.com/audio-bit-depth-explained-23706/" width="50%" style="position: relative; top: 5vh;">
+						<p>Also, notice the <b>quantization error / noise</b> graphs below (in <span id="blue">blue</span>)</p>
+						<p class="fragment">representing the <b>difference</b> between the digital signal and the analogue input signal.</p>
+						<p class="fragment">This difference is the <b>error</b> between the original and digital signals.</p>
+						<p class="fragment">Notice there is <b>less noise</b> as bit depth increases.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/Lindos10.svg" class="fade-in-text" alt="Lindos10.svg" width="50%" style="position: relative; top: 5vh;">
+						<p class="fragment"><b>Dynamic range</b> is the difference between the <em>loudest</em> and <em>softest</em> sounds in our signal.</p>
+						<p class="fragment">When we record and edit audio using <b>higher</b> bit depths,<br>we have <em>more digital numbers available</em><br>to represent the <b>full dynamic range</b> of our music.</p>
+						<p class="fragment">At <b>lower</b> bit depths, <em>quieter</em> sounds are <b>masked</b> by error noise,<br>and <em>louder</em> sounds <b>clip</b> and <b>distort</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/Lindos10.svg" class="fade-in-text" alt="Lindos10.svg" width="50%" style="position: relative; top: 5vh;">
+						<p class="fragment">In this image, the <span style="color: lawngreen;"><b>green</b></span> bars represent the <b>dynamic range</b>.</p>
+						<p class="fragment">The dynamic range is <b>wider</b> for higher bit depths (like 24 instead of 16):<br>an <b>increased range of numbers</b> to represents the loud and quiet parts of our music.</p>
+						<p class="fragment">Notice the <span style="color: darkgreen;"><b>dark green</b></span> bars too: this represent the <b>noise floor</b>,<br>meaning the quietest sounds which become digital error noise.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/cipriani.fig.1.12.png" class="fade-in-text" alt="cipriani.fig.1.12.png" width="50%" style="position: relative; top: 2vh;">
+						<p class="fragment">Here are 2 waveforms.</p>
+						<p class="fragment">The upper waveform is <b>softer</b> or <b>quieter</b>:</p>
+						<p class="fragment">It only reaches an amplitude of +0.5 / -0.5</p>
+						<p class="fragment">The lower waveform is <b>louder</b>:</p>
+						<p class="fragment">It reaches a maximum amplitude of +1 / -1</p>
+
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/cipriani.fig.1.13.png" class="fade-in-text" alt="cipriani.fig.1.13.png" width="50%" style="position: relative; top: 5vh;">
+						<p class="fragment">Sounds that are <b>too loud</b> for an audio system to handle are <b>clipped</b>.</p>
+						<p class="fragment">Notice how the <b>top</b> and <b>bottom</b> of this waveform becomes <b>flat</b><br>at +1 and -1, creating <em>hard edges</em> instead of <em>smooth curves</em>.</p>
+						<p class="fragment">Above +1 and below -1, the waveform should continue making <em>smooth, rounded curves</em>.</p>
+						<p class="fragment">But <b>digital audio</b> can only represent sampled amplitude values between +1 and -1.</p>
+						<p class="fragment">So, sounds that are <em>louder</em> than this will <b>clip</b> and sound <b>distorted</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="video-centered">
+						<iframe width="700" height="394" src="https://www.youtube.com/embed/ubCMI3Jq6e4?si=be97oq2vqp-QifH2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						<p>Here are some examples of the same sound recorded at a different bit depths.</p>
+						<p>At <b>lower</b> bit depths, listen for <b>distored</b> audio signals.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<h6>Ideal Bit Depth</h6>
+						<p class="fragment"><b>CD quality audio</b> utilizes a bit depth of <b>16 bits</b>.</p>
+						<p class="fragment">16 bits is a reasonable value for <b>listening</b><br>and for <b>consumer audio</b>,</p>
+						<p class="fragment">but not for audio <b>editing</b> and <b>recording</b>.</p>
+						<p class="fragment">In our MHL Digitale Kreation classes, <b>24 bits is our standard</b><br>bit depth for <b>production</b> and final <b>playback</b> formats.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/Increasing-bit-depth-resolution.png" class="fade-in-text" alt="https://www.izotope.com/en/learn/digital-audio-basics-sample-rate-and-bit-depth.html" width="80%" style="position: relative; top: 2vh;">
+						<p class="fragment">This table illustrates the difference between <b>sample rate</b> and <b>bit depth</b>.</p>
+						<p class="fragment"><b>Sample rate</b> corresponds to resolution on the X-axis (<em>time</em>),</p>
+						<p class="fragment">while <b>bit depth</b> corresponds to resolution on the Y-axis (<em>amplitude</em>).</p>
+						<p class="fragment">Higher values for both result in a better <b>reproduction</b> of a waveform.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<h6>Review — Sample Rate + Bit Depth</h6>
+						<p class="fragment">The <b>sample rate</b> (or <b>sampling frequency</b>) measures the<br><b>number of times per second</b> that an analogue input signal is <b>sampled</b>.</p>
+						<p class="fragment">When a signal is <b>sampled</b>, its <b>instantaneous amplitude</b> is measured.</p>
+						<p class="fragment">Computers can <b>interpolate</b> between samples by <b>inserting new values</b><br> between sample points, making the waveform <b>smoother</b>.</p>
+						<p class="fragment"><b>Higher</b> sample rates correspond to <b>more high frequency sounds</b><br>represented from the original signal.</p>
+						<p class="fragment"><b>Lower</b> sample rates correspond to <b>fewer high frequency sounds</b>,<br>and a less realistic reproduction of an original signal.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<h6>Review — Sample Rate + Bit Depth</h6>
+						<p><b>Bit Depth</b> measures the <b>dynamic range</b> of recorded sound.</p>
+						<p class="fragment"><b>Higher</b> bit depths correspond to a <b>wider dynamic range</b>,<br>representing the <em>louder</em> and <em>softer</em> components of a signal.</p>
+						<p class="fragment"><b>Lower</b> bit depths mask <em>quieter</em> sounds with <b>error noise</b>,<br>and <em>louder</em> sounds <b>clip</b> and <b>distort</b>.</p>
+						<p class="fragment">CDs are issued with a sample rate of 44.1 kHz and a bit depth of 16 bits.</p>
+						<p class="fragment">Remember: these values are for <b>listening</b> and <b>consumer audio</b>,<br>but they are <b>not suitable for audio production</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Sample Rate + Bit Depth</h4>
+					</div>
+					<div class="special-body">
+						<h6>Review — Sample Rate + Bit Depth</h6>
+						<p class="fragment">In our MHL Digitale Kreation classes,<br>a sampling frequency of <b>48 kHz</b> and a bit depth of <b>24 bits</b><br>is our standard for <b>production</b> and final <b>playback</b> formats.</p>
+						<p class="fragment">In your projects and assignments,<br><b>export audio files</b> using these values.</p>
+					</div>
+				</section>
+
+				<section data-auto-animate>
+					<div class="special-header">
+						<h2>Introduction to Digital Audio</h2>
+						<h4>Properties: Frequency + Amplitude</h4>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<h6>How do we describe sound?</h6>
+						<p class="fragment">In digital audio, we can easily describe<br>a sound’s basic physical measures:</p>
+						<ul>
+							<li class="fragment">Frequency</li>
+							<li class="fragment">Amplitude</li>
+						</ul>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<h6>Frequency</h6>
+						<p class="fragment">Frequency is a physical measure of a sound’s<br>perceived quality of <em>highness</em> or <em>lowness</em>.</p>
+						<p class="fragment">Frequency is measured in units of <b>hertz (Hz)</b>, or <em>cycles per second</em>,</p>
+						<p class="fragment">which is comparable to units like <b>RPM (revolutions per minute)</b>,<br>used to describe the <em>rotation</em> of wheels on a vehicle.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<h6>Frequency</h6>
+						<p>Frequency corresponds to <b>vibration</b>,</p>
+						<p class="fragment">and describes the <em>compression</em> and <em>rarefaction</em><br>of vibrating <b>air molecules</b>, which carry sound waves.</p>
+						<p class="fragment">We humans <em>experience</em>, <em>perceive</em>, and <em>describe</em> frequency as <b>pitch</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<h6>Frequency</h6>
+						<img data-src="img/wave.crest.png" class="fade-in-text" alt="wave.crest.png" width="75%">
+						<p>Frequency corresponds to <b>vibration</b>,</p>
+						<p class="fragment">and is measured as the <b>distance</b> between<br>the <b>crests</b> or <b>troughs</b> of a waveform.</p>
+						<p class="fragment">This distance is called the <b>wavelength (λ)</b><br>for regular and repeating (<em>periodic</em>) waveforms.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<!-- <h6>Frequency</h6> -->
+						<img data-src="img/cipriani.fig.1.9.png" class="fade-in-text" alt="cipriani.fig.1.9.png" width="40%" style="position: relative; top: 3vh;">
+						<p class="fragment">As frequency <em>increases</em> and is described using a higher value in <b>hertz</b>,</p>
+						<p class="fragment">that is, when there are <em>more cycles per second</em>,</p>
+						<p class="fragment">the <b>distance</b> between crests in the waveform <b>decreases</b>.</p>
+						<p class="fragment"><b>Higher frequencies</b> therefore correspond to <b>shorter wavelengths</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/electromagnetic.frequencies.jpg" class="fade-in-text" alt="https://www.tutorix.com/physics/radio-waves" width="90%">
+						<p class="fragment">It turns out that all of the frequencies we hear and that our ears<br>are sensitive to occupy just a <b>small range</b> of vibration.</p>
+						<p class="fragment">Everything we can hear is located in the zone <b>VLF</b> (“very low frequencies”).</p>
+						<p class="fragment">Above this range are <b>radio</b> transmission frequencies,</p>
+						<p class="fragment">the <b>infared</b>, <b>visible light</b>, and <b>ultraviolet</b> light spectra,</p>
+						<p class="fragment">and the high frequencies of <b>radiation</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/cipriani.fig.1.9.png" class="fade-in-text" alt="cipriani.fig.1.9.png" width="40%" style="position: relative; top: 3vh;">
+						<p class="fragment">We humans <em>experience</em>, <em>perceive</em>, and <em>describe</em><br>this <b>change</b> in frequency as <b>higher in pitch</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/PitchVsFrequency.jpg" class="fade-in-text" alt="http://acousticslab.org/psychoacoustics/PMFiles/Module05.htm" width="80%" style="position: relative; top: 3vh;">
+						<p class="fragment"><b>Frequency</b> and <b>pitch</b> are related, but different concepts...</p>
+						<p class="fragment"><b>Frequency</b> is the <em>physical</em> measure of vibration.</p>
+						<p class="fragment"><b>Pitch</b> is a <em>perceptual</em> measure of our <em>experience</em> of frequency.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/PitchVsFrequency.jpg" class="fade-in-text" alt="http://acousticslab.org/psychoacoustics/PMFiles/Module05.htm" width="80%" style="position: relative; top: 3vh;">
+						<p class="fragment"><b>Pitch</b> describes how our ears <b>respond</b> to changes in frequency.</p>
+						<p class="fragment">The graph above illustrates our <b>logarithmic perception of pitch</b>:</p>
+						<p class="fragment">Each time we <b>double</b> a frequency value (Hz), pitch is raised by an <b>octave</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/PitchVsFrequency.jpg" class="fade-in-text" alt="http://acousticslab.org/psychoacoustics/PMFiles/Module05.htm" width="60%" style="position: relative; top: 3vh;">
+						<p class="fragment">We <b>perceive</b> that the distance between each octave is the <b>same</b>.</p>
+						<p class="fragment">We therefore experience frequency on a <b>linear scale</b>.</p>
+						<p class="fragment">But this does not correspond to the <em>physical reality</em> of vibration:</p>
+						<p class="fragment">The distance between each octave, in frequency, <b>changes depending on the register</b>...</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/PitchVsFrequency.jpg" class="fade-in-text" alt="http://acousticslab.org/psychoacoustics/PMFiles/Module05.htm" width="80%" style="position: relative; top: 3vh;">
+						<p>For example, the distance between <b>A<sub>0</sub></b> and <b>A<sub>1</sub></b> is only 27.5 Hz,</p>
+						<p class="fragment">but the distance between <b>A<sub>5</sub></b> and <b>A<sub>6</sub></b> is 880 Hz.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/PitchVsFrequency.jpg" class="fade-in-text" alt="http://acousticslab.org/psychoacoustics/PMFiles/Module05.htm" width="80%" style="position: relative; top: 3vh;">
+						<p>This means that changes in <b>higher frequencies</b><br>require <em>greater</em> changes in the number of cycles per second,</p>
+						<p class="fragment">while changes in <b>lower frequencies</b><br>require <em>smaller</em> changes in cycles per second.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/PitchVsFrequency.jpg" class="fade-in-text" alt="http://acousticslab.org/psychoacoustics/PMFiles/Module05.htm" width="80%" style="position: relative; top: 3vh;">
+						<p>In other words, changes in <b>higher frequencies</b><br>require <em>more physical energy</em></p>
+						<p class="fragment">than changes in <b>lower frequencies</b>,<br>which require <em>less physical energy</em>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/frequencyranges.jpg" class="fade-in-text" alt="http://acousticslab.org/psychoacoustics/PMFiles/Module05.htm" width="60%" style="position: relative; top: 3vh;">
+						<p class="fragment">Different sound sources, including <b>acoustic instruments</b>,<br>occupy different <b>frequency ranges</b>.</p>
+						<p class="fragment">Can you imagine what this graph would look like<br>if it were plotted in <b>frequency</b> rather than <b>pitch</b>?</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/cipriani.fig.1.12.png" class="fade-in-text" alt="cipriani.fig.1.12.png" width="50%" style="position: relative; top: 2vh;">
+						<p class="fragment">We have already mentioned <b>amplitude</b>...</p>
+						<p class="fragment">Amplitude is a measure of the <b>intensity</b> of sound:</p>
+						<p class="fragment">its perceived quality of <em>loudness</em> or <em>softness</em>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/cipriani.fig.1.12.png" class="fade-in-text" alt="cipriani.fig.1.12.png" width="50%" style="position: relative; top: 2vh;">
+						<p>When a waveform is <b>louder</b>, the <b>crests</b> do not occur more often, or <em>more frequently</em>...</p>
+						<p class="fragment">Instead, the <b>intensity</b> of sound corresponds to the <b>height</b> of each wave;</p>
+						<p class="fragment">that is, the <em>maximum</em> of each <b>crest</b>,</p>
+						<p class="fragment">and the <em>minimum</em> of each <b>trough</b>.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/cipriani.fig.1.12.png" class="fade-in-text" alt="cipriani.fig.1.12.png" width="50%" style="position: relative; top: 2vh;">
+						<p class="fragment">In this image, the upper waveform is <em>softer</em> or <em>quieter</em> than the lower waveform,</p>
+						<p class="fragment">which is <em>louder</em> or <em>more intense</em> than the upper waveform.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-background-video="vid/speaker.vibrating.v02.mov" data-background-video-loop data-background-video-muted data-auto-animate>
+					<!-- https://youtu.be/J2BUvWRCBGM?si=dgYBt-RBXue4CyhE -->
+					<div class="special-header">
+						<h4 style="background: #ffffff77;">Digital Audio — Properties: Frequency + Amplitude</h4>
+						<p class="fragment" style="position: absolute; top: 50vh; background: #ffffff77;">Let’s consider how this results in the <b>analogue</b> reproduction of a digital sound wave;</p>		
+						<p class="fragment" style="position: absolute; top: 53vh; background: #ffffff77;">that is, when we send a waveform to our computer’s <b>DAC</b> to be amplified over loudspeakers...</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-background-video="vid/speaker.vibrating.v02.mov" data-background-video-loop data-background-video-muted data-auto-animate>
+					<!-- https://youtu.be/J2BUvWRCBGM?si=dgYBt-RBXue4CyhE -->
+					<div class="special-header">
+						<h4 style="background: #ffffff77;">Digital Audio — Properties: Frequency + Amplitude</h4>
+						<p style="position: absolute; top: 50vh; background: #ffffff77;">A speaker vibrating <em>faster</em> or <em>slower</em> corresponds to a change in <b>frequency</b>,</p>		
+						<p class="fragment" style="position: absolute; top: 53vh; background: #ffffff77;">but the <b>force</b> of its vibration, that is, whether the speaker cone is <b>displaced</b><br>or <em>moves over a greater <b>distance</b> in the same amount of time</em>,<br>corresponds to the <b>loudness</b> or <b>intensity</b> of sound.</p>		
+					</div>
+				</section>
+
+				<section class="special-slide" data-background-video="vid/speaker.vibrating.v02.mov" data-background-video-loop data-background-video-muted data-auto-animate>
+					<!-- https://youtu.be/J2BUvWRCBGM?si=dgYBt-RBXue4CyhE -->
+					<div class="special-header">
+						<h4 style="background: #ffffff77;">Digital Audio — Properties: Frequency + Amplitude</h4>
+						<p style="position: absolute; top: 50vh; background: #ffffff77;">If the cone moves <em>fast</em> and is displaced by a <em>small distance or force</em>,<br>the result will be a <em>high</em> and <em>quiet</em> sound.</p>		
+						<p class="fragment" style="position: absolute; top: 55vh; background: #ffffff77;">If it moves <em>slowly</em> and is displaced by a <em>larger distance or force</em>,<br>the result will be a <em>low</em> and <em>loud</em> sound.</p>		
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<!-- <h6>Linear Amplitude vs. dB SPL</h6> -->
+						<table style="font-size: 0.35em;">
+							<thead>
+								<tr>
+									<th>Linear Amplitude</th>
+									<th>dB<sub>SPL</sub></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>0.5</td>
+									<td>-6</td>
+								</tr>
+								<tr>
+									<td>0.25</td>
+									<td>-12</td>
+								</tr>
+								<tr>
+									<td>0.125</td>
+									<td>-18</td>
+								</tr>
+								<tr>
+									<td>0.1</td>
+									<td>-20</td>
+								</tr>
+								<tr>
+									<td>0.01</td>
+									<td>-40</td>
+								</tr>
+								<tr>
+									<td>0.001</td>
+									<td>-60</td>
+								</tr>
+								<tr>
+									<td>0.0001</td>
+									<td>-80</td>
+								</tr>
+								<tr>
+									<td>0</td>
+									<td>-inf</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="fragment">Like frequency, <b>amplitude</b> is represented on a number of possible <b>scales</b>.</p>		
+						<p class="fragment">And like frequency, amplitude is perceived on a <b>linear</b> scale<br>while its physical properties are measured on a <b>logarithmic</b> scale.</p>	
+						<p class="fragment">In music, we use a <b>relative</b> scale with <b>dyammic markings</b><br>to express loudness, using symbols like <b><em>ff</em></b> and <b><em>ppp</em></b>.</p>		
+	
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<!-- <h6>Linear Amplitude vs. dB SPL</h6> -->
+						<table style="font-size: 0.35em;">
+							<thead>
+								<tr>
+									<th>Linear Amplitude</th>
+									<th>dB<sub>SPL</sub></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>0.5</td>
+									<td>-6</td>
+								</tr>
+								<tr>
+									<td>0.25</td>
+									<td>-12</td>
+								</tr>
+								<tr>
+									<td>0.125</td>
+									<td>-18</td>
+								</tr>
+								<tr>
+									<td>0.1</td>
+									<td>-20</td>
+								</tr>
+								<tr>
+									<td>0.01</td>
+									<td>-40</td>
+								</tr>
+								<tr>
+									<td>0.001</td>
+									<td>-60</td>
+								</tr>
+								<tr>
+									<td>0.0001</td>
+									<td>-80</td>
+								</tr>
+								<tr>
+									<td>0</td>
+									<td>-inf</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="fragment"><b>Linear amplitude</b> is one kind of <b>digital scale</b>.</p>	
+						<p class="fragment">Audio <b>sample values</b> are encoded into a sound file using <b>linear amplitude</b>.</p>	
+						<p class="fragment">0 is equivalent to <b>silence</b> and 1 is equivalent to the <b>loudest possible</b> sound.</p>		
+						<p class="fragment">On this scale, all possible levels of loudness are represented between 0 and 1.</p>			
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<!-- <h6>Linear Amplitude vs. dB SPL</h6> -->
+						<table style="font-size: 0.35em;">
+							<thead>
+								<tr>
+									<th>Linear Amplitude</th>
+									<th>dB<sub>SPL</sub></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>0.5</td>
+									<td>-6</td>
+								</tr>
+								<tr>
+									<td>0.25</td>
+									<td>-12</td>
+								</tr>
+								<tr>
+									<td>0.125</td>
+									<td>-18</td>
+								</tr>
+								<tr>
+									<td>0.1</td>
+									<td>-20</td>
+								</tr>
+								<tr>
+									<td>0.01</td>
+									<td>-40</td>
+								</tr>
+								<tr>
+									<td>0.001</td>
+									<td>-60</td>
+								</tr>
+								<tr>
+									<td>0.0001</td>
+									<td>-80</td>
+								</tr>
+								<tr>
+									<td>0</td>
+									<td>-inf</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="fragment"><b>dB<sub>SPL</sub></b> means <em>sound pressure level</em> (SPL) measured in <em>decibels</em> (dB)<br>and is a measure of <b>pressure within the air</b> carrying sound waves.</p>	
+						<p class="fragment">It is mapped onto a scale (dB) whose values represent a <b>ratio</b><br>between a sound and a <em>reference value</em>, like the pressure value of silence.</p>		
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<!-- <h6>Linear Amplitude vs. dB SPL</h6> -->
+						<table style="font-size: 0.35em;">
+							<thead>
+								<tr>
+									<th>Linear Amplitude</th>
+									<th>dB<sub>SPL</sub></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>0.5</td>
+									<td>-6</td>
+								</tr>
+								<tr>
+									<td>0.25</td>
+									<td>-12</td>
+								</tr>
+								<tr>
+									<td>0.125</td>
+									<td>-18</td>
+								</tr>
+								<tr>
+									<td>0.1</td>
+									<td>-20</td>
+								</tr>
+								<tr>
+									<td>0.01</td>
+									<td>-40</td>
+								</tr>
+								<tr>
+									<td>0.001</td>
+									<td>-60</td>
+								</tr>
+								<tr>
+									<td>0.0001</td>
+									<td>-80</td>
+								</tr>
+								<tr>
+									<td>0</td>
+									<td>-inf</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="fragment">Here, the reference value 0 represents the<br><b>loudest possible sound</b> a digital audio system can handle.</p>		
+						<p class="fragment">All other values are increasingly <b>negative</b> as they become softer.<br>Silence is represnted as <b>infinitely quiet (-inf)</b>.</p>			
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<img data-src="img/faders.jpg" class="fade-in-text" alt="http://acousticslab.org/psychoacoustics/PMFiles/Module05.htm" width="55%" style="position: relative; top: 3vh;">
+						<p class="fragment">You will find a related scale <b>dB<sub>FS</sub></b> printed on the <b>faders</b> of <b>mixing consoles</b><br>(“decibels relative to full scale”).</p>
+						<p class="fragment">0 is <b>full scale </b> and represents <em>no change</em> to the incoming signal.</p>
+						<p class="fragment">Values <em>above</em> 0 represent <b>amplification</b> of the signal,</p>
+						<p class="fragment">while values <em>below</em> 0 represent <b>attenuation</b> of the signal.</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>Digital Audio — Properties: Frequency + Amplitude</h4>
+					</div>
+					<div class="special-body">
+						<!-- <h6>Linear Amplitude vs. dB SPL</h6> -->
+						<table style="font-size: 0.35em;">
+							<thead>
+								<tr>
+									<th>dB<sub>SPL</sub></th>
+									<th>Common Sounds</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>140</td>
+									<td>threshold of pain</td>
+								</tr>
+								<tr>
+									<td>130</td>
+									<td>jet taking off</td>
+								</tr>
+								<tr>
+									<td>120</td>
+									<td>rock concert</td>
+								</tr>
+								<tr>
+									<td>110</td>
+									<td>symphony orchestra <em>fortissimo</em></td>
+								</tr>
+								<tr>
+									<td>100</td>
+									<td>truck engine</td>
+								</tr>
+								<tr>
+									<td>90</td>
+									<td>heavy traffic</td>
+								</tr>
+								<tr>
+									<td>80</td>
+									<td>retail store</td>
+								</tr>
+								<tr>
+									<td>70</td>
+									<td>office</td>
+								</tr>
+								<tr>
+									<td>60</td>
+									<td>normal conversation</td>
+								</tr>
+								<tr>
+									<td>50</td>
+									<td>silent house</td>
+								</tr>
+								<tr>
+									<td>30</td>
+									<td>leaves rustling</td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>wind</td>
+								</tr>
+								<tr>
+									<td>0</td>
+									<td>weakest perceptible sound</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="fragment">Here is a decibel scale that <b>reverses</b> the reference frequency,<br>where 0 is now the <em>quietest sound possible</em>.</p>		
+						<p class="fragment">All other <b>common sounds</b> are described as pressure levels <em>above</em> silence.</p>			
+					</div>
+				</section>
+
+
+
+				<!-- <section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<p>
+							<b><u>M</u>usical <u>I</u>nstrument <u>D</u>igital <u>I</u>nterface</b> (MIDI) is a technical standard that allows multiple electronic devices to <b>synchronize</b> data in real-time.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<p>
+							<b><u>M</u>usical <u>I</u>nstrument <u>D</u>igital <u>I</u>nterface</b> (MIDI) is a technical standard that allows multiple electronic devices to <b>synchronize</b> data in real-time.
+						</p>
+						<p>
+							These could be <b>synthesizers</b> playing the same notes and rhythms...
+						</p>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<p>
+							<b><u>M</u>usical <u>I</u>nstrument <u>D</u>igital <u>I</u>nterface</b> (MIDI) is a technical standard that allows multiple electronic devices to <b>synchronize</b> data in real-time.
+						</p>
+						<p>
+							These could be <b>synthesizers</b> playing the same notes and rhythms...
+						</p>
+						<p>
+							Or <b>faders on a mixer</b> that move up and down on their own,<br>controlled by computer software...
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<p>
+							<b><u>M</u>usical <u>I</u>nstrument <u>D</u>igital <u>I</u>nterface</b> (MIDI) is a technical standard that allows multiple electronic devices to <b>synchronize</b> data in real-time.
+						</p>
+						<p>
+							These could be <b>synthesizers</b> playing the same notes and rhythms...
+						</p>
+						<p>
+							Or <b>faders on a mixer</b> that move up and down on their own,<br>controlled by computer software...
+						</p>
+						<p>
+							Or <b>lights</b> that blink in time with music.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<p>
+							In other words, MIDI connects all of these devices:
+						</p>
+						<img data-src="img/midi.devices.v01.drawio.png" class="fade-in-text" alt="MIDI connections">
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<p>
+							MIDI allows all of these devices to share the same <b>event data</b>:
+						</p>
+						<p class="fragment">
+							<b>Events</b> (like notes) are triggered on all devices <b>at the same time</b>. 
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<h6>Use Cases — What is MIDI Used For?</h6>
+						<ul>
+							<li class="fragment">
+								Realtime <b>synchronization</b> of musical playback on digital instruments, such as keyboards, samplers, and <a href="https://youtu.be/BswLMDavu80?t=86" target="_blank">Disklaviers</a> 
+							</li>
+							<li class="fragment">
+								<b>Controlling</b> analog instruments, such as <a href="https://youtu.be/b0p9rH8K3uY?t=57" target="_blank">Eurorack modular synthesizers</a>  
+							</li>
+							<li class="fragment">
+								<b>Synchronizing</b> <a href="https://youtu.be/ybVoFn04Y94?t=332" target="_blank">lighting networks</a>
+							</li>
+							<li class="fragment">
+								Offline <b>sequencing</b> musical notes and rhythms in a musical work
+							</li>
+							<li class="fragment">
+								<b>Editing</b> a note's paramters: rhythm, duration, pitch, loudness, or timbre
+							</li>
+							<li class="fragment">
+								<b>Controlling</b> virtual musical instruments, like plug-ins and VSTs
+							</li>
+							<li class="fragment">
+								<b>Storing</b> a musical score in a small file format
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<h6>Use Cases — What is MIDI Used For?</h6>
+						<h5>
+							Note: Realtime vs. Offline
+						</h5>
+						<p class="fragment">
+							<b>Realtime</b>: <em>synchronous</em>, instantly rendered within a <br> fraction of a second in <b>performance</b>
+						</p>
+						<p class="fragment">
+							<b>Offline</b>: <em>not synchronous</em>, rendered later, <br> after careful editing, in a <b>composition</b>
+						</p>
+
+
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<h5>Are MIDI and <span id="red">sound</span> the same thing?</h5>
+						<p class="fragment">
+							Good question, but... <b>NO!</b>
+						</p>
+						<p class="fragment">
+							Sound signals represent pressure waves travelling through air.
+						</p>
+						<p class="fragment">
+							Sound can be stored in a <b>digital or analog medium</b>
+						</p>
+						<p class="fragment">
+							such as CDs or magnetic tape.
+						</p>
+						<p class="fragment">
+							MIDI is a <b>digital</b> format, but <b>does not<br>transmit recorded sound</b> and is not a signal.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<h6>MIDI is like a musical score...</h6>
+						<p class="fragment">
+							It can store very <b>accurate timing information</b> 
+						</p>
+						<p class="fragment">
+							about musical parameters like<br><b>pitch</b>, <b>rhythm</b>, <b>duration</b>, <b>tempo</b>, and <b>timbre</b>.
+						</p>
+						<p class="fragment">
+							MIDI can be stored in <b>small files:</b><br>
+							ca. 1000 times less space than audio files!
+						</p>
+						<p class="fragment">
+							Like <b>musical scores</b>, MIDI can be stored in simple <b>text files</b>. 
+						</p>
+						<p class="fragment">
+							<span id="green"><em>MIDI is a very <b>efficient</b> way of<br>
+								storing <b>musical instructions</b> on a computer.</em></span>
+						</p>
+
+					</div>
+				</section>	
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<h6>Is MIDI a <span id="red">computer language</span>?</h6>
+						<p class="fragment">
+							Good question, but... <b>NO!</b>
+						</p>
+						<p class="fragment">
+							Computer languages allow you to construct <b>systems of logic</b>,
+						</p>
+						<p class="fragment">
+							and include many <b>classes</b> (i.e., data types),
+						</p>
+						<p class="fragment">
+							which can process everything from numbers to letters to sound files.
+						</p>
+						<p class="fragment">
+							MIDI, however, is far more basic than that... 
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<h6>Is MIDI a <span id="red">computer language</span>?</h6>
+						<p>
+							MIDI <b>only stores numbers</b>. 
+						</p>
+						<p class="fragment">
+							These numbers do not represent sound,<br>but only event <b>triggers</b>.
+						</p>
+						<p class="fragment">
+							MIDI cannot represent any other type of data<br> and only performs one simple task:
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<h6>Is MIDI a <span id="red">computer language</span>?</h6>
+						<p>
+							MIDI sends <b>binary messages</b> that are <b>interpreted</b><br>exactly at the moment they are sent and received...
+						</p>
+						<p class="fragment">
+							So, when you depress a key on the keyboard,
+						</p>
+						<p class="fragment">
+							or move a fader on the mixer,
+						</p>
+						<p class="fragment">
+							<b>instantly</b> a sound is produced,
+						</p>
+						<p class="fragment">
+							or a light switches on!
+						</p>	
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — MIDI Definition + Use Cases</h4>
+					</div>
+					<div class="special-body">
+						<h6>Is MIDI a <span id="red">computer language</span>?</h6>
+						<p>
+							MIDI is therefore <b><em>not</em></b> a computer language
+						</p>
+						<p class="fragment">
+							and is best thought of as a simple<br><b>control protocol</b>.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — History — The 1960s</h4>
+					</div>
+					<div id="BobDonText">
+						<p class="fragment">
+							These synthesis pioneers did not use MIDI.
+						</p>
+						<p class="fragment">
+							Before MIDI, cables transported <b>control voltage</b>,
+						</p>
+						<p class="fragment">
+							delivering <b>electricity</b> as a sole means<br>of controlling sonic events.
+						</p>
+					</div>
+					<div id="Don">
+						<img data-src="img/buchlaabuchlasys.l1.jpg" class="fade-in-text" alt="Don Buchla">
+						<h6 style="font-size: 0.5em;">Don Buchla</h6>
+					</div>
+					<div id="Bob">
+						<img data-src="img/moog.jpeg" class="fade-in-text" alt="Bob Moog">
+						<h6 style="font-size: 0.5em;">Bob Moog</h6>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — History — The 1970s</h4>
+					</div>
+					<div id="seventies-synths">
+						<img data-src="img/1970s.synths.png" class="fade-in-text" alt="1970s synths">
+						<h6 style="font-size: 0.5em;">1970s synths</h6>
+					</div>
+					<div class="special-body">
+						<p>
+							<b>Many companies</b> designed their own synths, 
+						</p>
+						<p class="fragment">
+							but these instruments could not communicate...
+						</p>
+						<p class="fragment">
+							<b>Korg</b> and <b>Yamaha</b> used one connection format,
+						</p>
+						<p class="fragment">
+							but <b>Moog</b> and <b>Roland</b> used another.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — History — 1981</h4>
+					</div>
+					<div class="special-body">
+						<p class="fragment">
+							In 1981, Dave Smith of <b>Sequential Circuit</b> developed<br>a <b>message</b> to send <b>pitch data</b> at a 19600 baud rate.
+						</p>
+						<p class="fragment">
+							Ikutaro Kakehashi of <b>Roland</b> also worked on a <b>common language</b><br>for synthesizers shared by <b>Yamaha</b>, <b>Korg</b>, and <b>Akai</b>.
+						</p>
+						<p class="fragment">
+							<b>Roland</b> and <b>Korg</b> began discussing the need for a <b>standard</b> for all<br>synthesizers at <b>AES</b> ("Audio Engineering Society") in California.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — History — 1982</h4>
+					</div>
+					<div id="eighties-synths">
+						<img data-src="img/SC.and.Roland.1982.png" class="fade-in-text" alt="Prophet 600 and Jupiter 6 (1982)">
+						<h6 style="font-size: 0.5em;">Sequential Circuit Prophet 600 and Roland Jupiter 6 (1982)</h6>
+						<p class="fragment">
+							By 1982, the first MIDI-compliant synthesizers were born.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — History — 1982</h4>
+					</div>
+					<div class="special-body">
+						<p class="fragment">
+							In 1982, the first <b>technical specification</b> was published on the MIDI standard:
+						</p>
+						<ul>
+							<li class="fragment">
+								MIDI messages included: <b>Note-On</b> and <b>Note-Off</b>, <b>Pitch Bend</b>, <b>Control Change</b>, <b>Aftertouch</b>, and <b>SysEx</b>.
+							</li>
+							<li class="fragment">
+								A standard 5-pin MIDI cable and port
+							</li>
+							<li class="fragment">
+								IN, OUT, and THRU connections among synthesizers
+							</li>
+							<li class="fragment">
+								Transmission of up to 16 channels per port
+							</li>
+							<li class="fragment">
+								Baud rate of 31250
+							</li>
+							<li class="fragment">
+								Establishment of the <b>IMA</b> (International MIDI Association) to coordinate future work on the standard
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>What is MIDI? — History — Early Computer MIDI</h4>
+					</div>
+					<div id="computer-midi-1980s">
+						<img data-src="img/computer.midi.1985-1989.png" class="fade-in-text" alt="Computer MIDI — 1980s">
+						<p class="fragment">
+							The first <b>computer and software implementations</b> of MIDI were born.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4 style="font-size: smaller;">Software + Hardware — Cables, Connectors, and MIDI Controllers</h4>
+					</div>
+					<div>
+						<img data-src="img/midi.cable.v02.png" class="fade-in-text" alt="MIDI DIN cable">
+						<p class="fragment">
+							MIDI messages were first transmitted on <b>5-pin DIN</b> cables...
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4 style="font-size: smaller;">Software + Hardware — Cables, Connectors, and MIDI Controllers</h4>
+					</div>
+					<div id="midi-ports">
+						<img data-src="img/Yamaha_DX7_MIDI_connectors.jpeg" class="fade-in-text" alt="MIDI DIN cable">
+						<p class="fragment">
+							...which connected a synthesizer's <b>IN</b>, <b>OUT</b>, and <b>THRU</b> ports:
+						</p>
+						<ul>
+							<li class="fragment"><b>IN</b> receives MIDI messages.</li>
+							<li class="fragment"><b>OUT</b> sends MIDI messages.</li>
+							<li class="fragment"><b>THRU</b> passes messages received by <b>IN</b>.</li>
+						</ul>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4 style="font-size: smaller;">Software + Hardware — Cables, Connectors, and MIDI Controllers</h4>
+					</div>
+					<div id="midi-ports">
+						<img data-src="img/midi.thru.png" class="fade-in-text" alt="MIDI DIN cable">
+						<p class="fragment">
+							With MIDI <b>THRU</b> it is possible to connect several synths in a "daisy chain"
+						</p>
+						<p class="fragment">
+							and to control them all from one device (e.g., Instrument 1 above).
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4 style="font-size: smaller;">Software + Hardware — Cables, Connectors, and MIDI Controllers</h4>
+					</div>
+					<div id="midi-ports">
+						<img data-src="img/midi.thru.png" class="fade-in-text" alt="MIDI DIN cable">
+						<p>
+							But there were several problems with this <b>chain configuration</b>:
+						</p>
+						<ul>
+							<li class="fragment">16 channels must be <b>shared among all connected instruments</b>.</li>
+							<li class="fragment"><b>Latency</b> occurred at the end of the chain (e.g., Instrument 4).</li>
+							<li class="fragment">Messages could only be sent <em>to</em> the synths but not <em>from</em> them.<br>Yet, both directions are necessary for <b>computer sequencing</b>.</li>
+						</ul>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4 style="font-size: smaller;">Software + Hardware — Cables, Connectors, and MIDI Controllers</h4>
+					</div>
+					<div id="star-config">
+						<img data-src="img/etoile.png" class="fade-in-text" alt="MIDI DIN cable">
+						<p>
+							A solution is the <b>star configuration</b>.
+						</p>
+						<ul>
+							<li class="fragment">One <b>"master"</b> computer controls any number of <b>"slaves."</b></li>
+							<li class="fragment">No <b>Latency</b> because of shorter connections.</li>
+							<li class="fragment">Each <b>slave</b> shares its own 16 channels over a unique physical connection.</li>
+							<li class="fragment">Notice the <b>MIDI interface</b> and <b>USB connection</b> in the center of the "star."</li>
+						</ul>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4 style="font-size: smaller;">Software + Hardware — Using MIDI in a Sequencer</h4>
+					</div>
+					<div class="video-centered">
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/aJg1UfePwTc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						<p class="fragment">
+							Here, sequencer software (Ableton Live) <b>records</b> and <b>plays back</b> MIDI data. 
+						</p>
+						<p class="fragment">
+							MIDI "clips" store this data in a <a href="https://www.ableton.com/en/manual/editing-midi-notes-and-velocities/" target="_blank">piano roll editor</a> (bottom of screen).  
+						</p>
+						<p class="fragment">
+							The <b>sequencer</b> makes no sound by itself;<br>it only <b>triggers</b> notes played by software synthesizers.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4 style="font-size: smaller;">Software + Hardware — Using MIDI in a Sequencer</h4>
+					</div>
+					<div class="video-centered">
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/aJg1UfePwTc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						<p class="fragment">
+							The <b>keyboard</b> he plays functions as a <b>MIDI Controller</b>:
+						</p>
+						<p class="fragment">
+							it <b>controls</b> the playback of another MIDI device, like the software synth.
+						</p>
+						<p class="fragment">
+							After recording the MIDI information, the <b>sequencer</b> acts as a <b>controller</b><br>when it plays the software synth!
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4 style="font-size: smaller;">Software + Hardware — Using MIDI in a Sequencer</h4>
+					</div>
+					<div class="video-centered">
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/cWaO9wS389I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						<p class="fragment">
+							Here, another sequencer (Apple Logic) <b>controls</b><br>2 other <b>peripherals</b>: the Korg NS5R and X5DR samplers.
+						</p>
+						<p class="fragment">
+							Sound <b>samples</b> are stored in the Korg periphals
+						</p>
+						<p class="fragment">
+							while the <b>sequencer</b> (Logic) again makes no sound by itself;<br>the software only <b>triggers</b> notes on the peripherals.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div class="special-body">
+						<h6 class="fragment">So... Where does this mad science come from?!</h6>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div class="special-body">
+						<h6>Each MIDI message includes 2 components:</h6>
+						<ul>
+							<li class="fragment">a <b>Status Byte</b>: Defines the message type and the channel number.</li>
+							<li class="fragment">and (a) <b>Data Byte(s)</b>: Binary numbers formatted for each type of message.</li>
+						</ul>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div class="special-body">
+						<h6>All message components are sent in binary.</h6>
+						<p class="fragment">Binary: <b>lists</b> containing only digits 0 or 1,<br>which represent a number or letter</p>
+						<p class="fragment"><em>next slide:</em> how to convert a <br>base 10 number to a binary number...</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div class="special-body">
+						<div id="inch-calculator-icw" data-ct="decimal_to_binary" data-cw="320" data-ch="300" style="position: absolute; top: 5dvh;" data-cv="MTE2OTI2MDQ1MDE="><div id="inch-calculator-icwh">Decimal to Binary Converter</div><div id="inch-calculator-icwf"><a id="inch-calculator-icwi" href="https://www.inchcalculator.com/decimal-to-binary-converter/" target="_blank"><img id="inch-calculator-icwl" src="https://cdn.inchcalculator.com/e/inch-calculator-logo-tiny.png" alt="Inch Calculator Logo"><span id="inch-calculator-icwb">Inch Calculator</span></a></div></div><script src="https://cdn.inchcalculator.com/e/widgets.min.js" async defer></script>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div id="status-byte">
+						<img data-src="img/status.byte.png" class="fade-in-text" alt="status byte">
+					</div>
+					<div style="position: relative; top: 35dvh;">
+						<h6>Status Byte</h6>
+						<p>Defines the message type and the channel number.</p>
+						<ul>
+							<li class="fragment"><b>1 bit</b></li>
+							<li class="fragment"><b>3 bits</b>: message type</li>
+							<li class="fragment"><b>4 bits</b>: MIDI channel number (0-15)</li>
+						</ul>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div class="special-body">
+						<h6>Types of Messages (3 bits):</h6>
+							<table style="font-size: 0.65em;">
+								<thead><tr>
+									<th>binary</th>
+									<th>message type</th>
+									<th>description</th>
+								</tr></thead>
+								<tbody>
+									<tr>
+										<td><span id="nums-small">000</span></td>
+										<td><b>Note-Off</b></td>
+										<td>release a note</td>
+									</tr>
+									<tr>
+										<td><span id="nums-small">001</span></td>
+										<td><b>Note-On</b></td>
+										<td>start a note</td>
+									</tr>
+									<tr>
+										<td><span id="nums-small">011</span></td>
+										<td><b>Control Change</b></td>
+										<td>change continuous controller</td>
+									</tr>
+									<tr>
+										<td><span id="nums-small">100</span></td>
+										<td><b>Program Change</b></td>
+										<td>change sound</td>
+									</tr>
+									<tr>
+										<td><span id="nums-small">101</span></td>
+										<td><b>Aftertouch</b></td>
+										<td>global pressure per channel</td>
+									</tr>
+									<tr>
+										<td><span id="nums-small">010</span></td>
+										<td><b>Polyphonic Aftertouch</b></td>
+										<td>pressure for each key</td>
+									</tr>
+									<tr>
+										<td><span id="nums-small">110</span></td>
+										<td><b>Pitch Bend</b></td>
+										<td>glissando around a pitch value</td>
+									</tr>
+								</tbody>
+							</table>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div class="special-body">
+						<h6>Data Bytes</h6>
+						<p>Includes the data formatted for each type of message.</p>
+						<p class="fragment">
+							A <b>data byte</b> is 7 binary digits, which can represent<br>numbers ranging from 0 to 127.
+						</p>
+						<p class="fragment">
+							The number of data bytes following a status<br>byte depends on the type of message sent.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div id="data-bytes">
+						<img data-src="img/data.bytes.png" class="fade-in-text" alt="data bytes">
+						<h6 style="font-size: smaller;">Examples of Data Bytes</h6>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div class="special-body">
+						<h6>Note-On and Note-Off Messages</h6>
+						<p class="fragment">
+							Notice that these messages <em>(previous slide)</em> require <b>2 data bytes</b>:</p>
+						<p class="fragment">
+							One number represents <b>pitch</b> while the other represents <b>velocity</b>, or <b>loudness</b>.
+						</p>
+						<p class="fragment">
+							<b>Pitch</b> values (0-127) span the range of the orchestra.<br>MIDI note number 60 is middle C.
+						</p>
+						<p class="fragment">
+							<b>Velocity</b> values also range from 0 (silent) to 127 (loudest possible sound).
+						</p>
+						<p class="fragment">
+							A velocity value of 0 is considered a <b>Note-Off</b> message. 
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div class="special-body">
+						<h6>Note-On and Note-Off Messages</h6>
+						<p>
+							All "notes," then, require 2 MIDI messages:
+						</p>
+						<ul>
+							<li class="fragment">a <b>Note-On</b> message, which sends the note's <b>pitch</b> and <b>velocity</b>,<br>and which also <b>"starts"</b> the note, and</li>
+							<li class="fragment">a <b>Note-Off</b> message, which <b>"turns off"</b> the corresponding note<br>after it is "held" for some <b>duration</b>.</li>
+						</ul>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div id="single-note">
+						<img data-src="img/one.midi.note.sequenced.png" class="fade-in-text" alt="data bytes">
+					</div>
+					<div class="special-body" style="font-size: smaller; position: relative; top: 5dvh;">
+						<p class="fragment">
+							Here is a single note in a <b>piano roll sequencer</b>.
+						</p>
+						<p class="fragment">
+							The playhead, moving from left to right, first rolls over <b>point A</b>, <br> which triggers the <b>Note-On</b> message:
+						</p>
+						<p class="fragment">
+							<span id="nums-small"><span id="red">1</span><span id="green">001</span><span id="blue">0001</span> <span id="orange">0111100</span> <span id="purple">1100100</span> </span>meaning:
+						</p>
+						<p class="fragment">
+							<span id="red">status byte</span> + <span id="green">type: Note-On</span> + <span id="blue">channel: 1</span> + <span id="orange">MIDI note: 60</span> + <span id="purple">Velocity: 100</span>
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div id="single-note">
+						<img data-src="img/one.midi.note.sequenced.png" class="fade-in-text" alt="data bytes">
+					</div>
+					<div class="special-body" style="font-size: smaller; position: relative; top: 5dvh;">
+						<p class="fragment">
+							After some <b>duration</b> (length of the blue bar), the playhead rolls over <b>point B</b>, <br> which triggers the <b>Note-Off</b> message:
+						</p>
+						<p class="fragment">
+							<span id="nums-small"><span id="red">1</span><span id="green">000</span><span id="blue">0001</span> <span id="orange">0111100</span> <span id="purple">0000000</span> </span>meaning:
+						</p>
+						<p class="fragment">
+							<span id="red">status byte</span> + <span id="green">type: Note-Off</span> + <span id="blue">channel: 1</span> + <span id="orange">MIDI note: 60</span> + <span id="purple">Velocity: 0 (silence!)</span>
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div class="special-body">
+						<h6>MIDI File (.mid) Formats</h6>
+						<p>Musical scores can be represented as MIDI files in 2 ways:</p>
+						<ul>
+							<li class="fragment"><b>Format 0:</b> All MIDI data is reduced to a <b>single track</b>,<br>but parsed by channel number in each MIDI message.</li>
+							<li class="fragment"><b>Format 1:</b> Each channel is represented as a separate track; useful for <b>sequencers</b>, where each instrument is placed on a separate track.</li>
+						</ul>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div class="special-body">
+						<h6>MIDI File (.mid) Formats</h6>
+						<p class="fragment">
+							<b>.mid</b> files can be opened by many <b>music notation programs</b>
+						</p>
+						<p class="fragment">
+							like <b>Finale</b>, <b>Sibelius</b>, <b>MuseScore</b>, <b>LilyPond</b>, or <b>Dorico</b>.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div class="special-body">
+						<h6><a href="https://de.wikipedia.org/wiki/General_MIDI" target="_blank">General MIDI:</a> A Standard Sound Bank</h6>
+						<p class="fragment">A bank of sounds used by all synthesizers,<br>including software synthesizers available on computers.</p>
+						<p class="fragment">Users can call the same instrument represented by a<br><b>program change number</b> on any MIDI-compatible instrument.</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header">
+						<h4>MIDI Technical Standard — Encoding</h4>
+					</div>
+					<div class="video-centered">
+						<h6><a href="https://de.wikipedia.org/wiki/General_MIDI" target="_blank">General MIDI:</a> A Standard Sound Bank</h6>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/IYdq06l8qXI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						<p>
+							Here, all 128 General MIDI <b>programs</b> are played, one at a time on the same pitch, using the internal synth that comes installed on Windows computers.
+						</p>
+					</div>
+				</section>
+
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — Expressive New MIDI Controllers</h4>
+					</div>
+					<div class="video-centered">
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/nQwWEgVVPf0?start=248" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						<p>
+							The TouchMe MIDI controller uses the <b>electrical resistance</b><br>of connected objects to send MIDI messages.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — Expressive New MIDI Controllers</h4>
+					</div>
+					<div class="video-centered">
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/JBoNHw7KKK0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						<p>
+							The Roli Seaboard controllers allow for <b>continuous change</b><br>in pitch, timbre, and other synthesis parameters. 
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — Expressive New MIDI Controllers</h4>
+					</div>
+					<div class="video-centered">
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/B6P38s5DTkE?start=5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						<p>
+							The Karlax controller uses <b>gyroscope sensors</b><br>to generate <b>gesture data</b> and can be performed by<br>a musician or a dancer, for example.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — Expressive New MIDI Controllers</h4>
+					</div>
+					<div class="video-centered">
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/RhLLL77nq7c?start=65" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						<p>
+							The Sensel Morph uses many <b>pressure sensors</b> to generate continuous MIDI data that can mapped to gestures in musical and non-musical situations. 
+						</p>					
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — MPE — MIDI Polyphonic Expression</h4>
+					</div>
+					<div class="special-body">
+						<h6><u>M</u>IDI <u>P</u>olyphonic <u>E</u>xpression (MPE)</h6>
+						<p class="fragment">
+							The <b>continuous pitch</b> (<em>glissando</em>) of these modern controllers<br>(<em>on previous slides</em>) are made possible thanks to <b>MPE.</b> 
+						</p>
+						<p class="fragment">
+							Normally, <b>Pitch Bend</b> messages are sent on <em>all</em> channels at once, but...
+						</p>
+						<p class="fragment">
+							MPE allows messages like <b>Pitch Bend</b> to be sent for <b>each individual note</b>...
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — MPE — MIDI Polyphonic Expression</h4>
+					</div>
+					<div class="special-body">
+						<h6><u>M</u>IDI <u>P</u>olyphonic <u>E</u>xpression (MPE)</h6>
+						<p class="fragment">
+							In other words, MPE gives <em>each note</em> its own pitch bend,<br>modulation, pressure, dynamics, and other parameters.
+						</p>
+						<p class="fragment">
+							Imagine: <em>each</em> finger or <em>each</em> key acts as its <b>own MIDI controller</b>!
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — MPE — MIDI Polyphonic Expression</h4>
+					</div>
+					<div class="special-body">
+						<h6><u>M</u>IDI <u>P</u>olyphonic <u>E</u>xpression (MPE)</h6>
+						<p class="fragment">
+							Like 1982, many instrument builders were trying to address<br>problems in their <b>own way</b>, without communicating among one another.
+						</p>
+						<p class="fragment">
+							Similarly, they needed a <b>standard language</b>.
+						</p>
+						<p class="fragment">
+							In 2018, MPE was adopted as a standard for polyphonic<br>expressiveness by the International MIDI Association.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — MPE — MIDI Polyphonic Expression</h4>
+					</div>
+					<div class="special-body">
+						<h6><u>M</u>IDI <u>P</u>olyphonic <u>E</u>xpression (MPE)</h6>
+						<p>
+							Remember how a single DIN cable can carry 16 MIDI channels?
+						</p>
+						<p class="fragment">
+							Traditionally, these were used for 16 different instruments,<br>each with its own <b>Program Change</b> values.
+						</p>
+						<p class="fragment">
+							MPE <em>repurposes</em> the use of MIDI channels: each channel is used<br>for a single note, allowing a <b>polyphony of expressive messaging<br>per note</b> on a single instrument.
+						</p>
+						<p class="fragment">
+							The system permits a maximum polyphony of <b>15 notes</b>, reserving<br><b>one master channel</b> for messages that apply to all notes.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — MPE — MIDI Polyphonic Expression</h4>
+					</div>
+					<div>
+						<div class="video-centered">
+							<h6><u>M</u>IDI <u>P</u>olyphonic <u>E</u>xpression (MPE)</h6>
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/YEEE-Hjmpdw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+							<p>
+								A good visualization for how MPE utilizes MIDI messaging
+							</p>
+						</div>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — MIDI Over USB, TRS, Ethernet, Wireless</h4>
+					</div>
+					<div class="special-body">
+						<h6>MIDI Over USB Cables</h6>
+						<p class="fragment">
+							Today, MIDI devices are frequently connected with faster <b>USB cables</b>,<br>instead of the older and slower DIN cables.
+						</p>
+						<p class="fragment">
+							A single USB cable can act as 16 independent MIDI cables,<br>each with 16 channels,<br>for a total of 256 MIDI channels. 
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — MIDI Over USB, TRS, Ethernet, Wireless</h4>
+					</div>
+					<div class="special-body">
+						<h6>MIDI Over TRS Cables</h6>
+						<p class="fragment">
+							For distances over more than just a few meters,<br>a USB or MIDI cable will experience <b>latency</b> and <b>drops in signal</b>.
+						</p>
+						<p class="fragment">
+							A solution has been to use <b>TRS</b> cables.<br>Like XLR audio cables, TRS can transmit over long distances. 
+						</p>
+						<p class="fragment">
+							With the growing use of Eurorack analog modular synthesizers,<br>which normally use small TS patch cables (close to TRS),<br>it is increasingly common to find <b>MIDI-to-TRS cables</b><br>connecting controllers to Eurorack modules.
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — MIDI Over USB, TRS, Ethernet, Wireless</h4>
+					</div>
+					<div class="special-body">
+						<h6>MIDI Over Ethernet</h6>
+						<p class="fragment">
+							<b>Ethernet cables</b> (used for internet connections)<br>are now frequently used to transmit audio.
+						</p>
+						<p class="fragment">
+							Now, we also use <b>ethernet cables</b> to transmit<br>large amounts of MIDI data over large distances,
+						</p>
+						<p class="fragment">
+							especially useful when using today's elaborate <b>MIDI interfaces</b>,<br>which connect many devices in an expansive <b>network.</b>
+						</p>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — MIDI Over USB, TRS, Ethernet, Wireless</h4>
+					</div>
+					<div class="video-centered">
+						<h6>Wireless MIDI</h6>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/gDxM-L3VaoU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						<p>
+							Today, you can even connect MIDI over wireless networks like <b>Bluetooth</b>! 
+						</p>				
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — Advanced Topics</h4>
+					</div>
+					<div class="special-body">
+						<h6>Advanced MIDI Topics</h6>
+						<p class="fragment">
+							In our other seminars, we frequently discuss these<br>and other advanced MIDI issues, like: 
+						</p>
+						<ul>
+							<li class="fragment">
+								Human gestural control of MIDI
+							</li>
+							<li class="fragment">
+								Microtonal resolution of pitch using MIDI
+							</li>
+							<li class="fragment">
+								Using MIDI values to control custom <b>samplers</b> and <b>microcontrollers</b>
+							</li>
+							<li class="fragment">
+								Mapping MIDI values to <b>control voltage</b> and other synthesis parameters. 
+							</li>
+							<li class="fragment">
+								Interfacing MIDI control with sensors and <b>real-world objects</b> 
+							</li>
+							<li class="fragment">
+								Broadcasting MIDI <b>over the internet</b> 
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="special-slide" data-auto-animate>
+					<div class="special-header" style="font-size: smaller;">
+						<h4>MIDI For the Future — MIDI Over USB, TRS, Ethernet, Wireless</h4>
+					</div>
+					<div class="special-body">
+						<h6>That's the end!</h6>
+						<p>
+							We hope you learned something useful<br>to use in your artistic practice!
+						</p>				
+					</div>
+				</section> -->
+			
+
+
+
+
+
+				<!-- <section data-background-video="https://youtu.be/cWaO9wS389I" data-background-video-loop data-background-video-muted>
+					<h2>Video</h2>
+				</section> -->
+
+
+
+
+
+				
+				<!-- <section>
+					<div id="hidden" style="display:none;">
+						<div id="header">
+							<div id="header-left">HEADER-LEFT</div>
+							<div id="header-right">HEADER-RIGHT</div>
+							<div id="footer-left">FOOTER-LEFT</div>
+						</div>
+					</div>
+				</section> -->
+
+
+
+			</div>
+		</div>
+
+		<!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript">
+			// 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+			var header = $('#header').html();
+			if ( window.location.search.match( /print-pdf/gi ) ) {
+				Reveal.addEventListener( 'ready', function( event ) {
+					$('.slide-background').append(header);
+				});
+			}
+			else {
+				$('div.reveal').append(header);
+		   }
+		</script> -->
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				progress: true,
+				slideNumber: "c/t",
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
