@@ -27,6 +27,10 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   src: url('https://fonts.googleapis.com/css2?family=Buenard:wght@400;700&display=swap') format('woff')
 }
 
+@font-face {
+  font-family: 'Fibel Vienna';
+  src: url('./dist/theme/fonts/Fibel Vienna.ttf') format('ttf')
+}
 
 /*********************************************
  * GLOBAL STYLES
@@ -43,7 +47,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   --r-main-color: #000; 
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
-  --r-heading-font: Fibel Vienna, Helvetica, sans-serif;
+  --r-heading-font: 'Fibel Vienna', Helvetica, sans-serif;
   --r-heading-color: #000;
   --r-heading-line-height: 1.2;
   --r-heading-letter-spacing: normal;
